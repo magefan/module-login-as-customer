@@ -38,9 +38,12 @@ class Login extends \Magento\Backend\App\Action
 
         $user = $this->_objectManager->get('Magento\Backend\Model\Auth\Session')->getUser();
         $login->generate($user->getId());
+        // We're not using the $customer->getStoreId() method due to a bug where it returns the store for the customer's
+        // website
+        $customerStoreId = $customer->getData('store_id');
 
         $store = $this->_objectManager->get('Magento\Store\Model\StoreManagerInterface')
-            ->getStore($customer->getStoreId());
+            ->getStore($customerStoreId);
         $url = $this->_objectManager->get('Magento\Framework\Url')
             ->setScope($store);
 
