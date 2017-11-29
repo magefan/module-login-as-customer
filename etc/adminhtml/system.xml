@@ -9,24 +9,24 @@
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="magefan" translate="label" sortOrder="110">
-            <label>MageFan Extensions</label>
-        </tab>
-        <section id="mfloginascustomer" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
-            <class>separator-top</class>
-            <label>Login As Customer</label>
-            <tab>magefan</tab>
-            <resource>Magefan_LoginAsCustomer::config_section</resource>
-            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                <label>Login As Customer Information</label>
-                <field id="version" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <frontend_model>Magefan\LoginAsCustomer\Block\Adminhtml\System\Config\Form\Info</frontend_model>
-                </field>
-                <field id="disable_page_cache" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Disable Page Cache For Admin User</label>
-                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                </field>
-            </group>
-        </section>
+        <!--<tab id="magefan" translate="label" sortOrder="110">-->
+            <!--<label>MageFan Extensions</label>-->
+        <!--</tab>-->
+        <!--<section id="mfloginascustomer" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">-->
+            <!--<class>separator-top</class>-->
+            <!--<label>Login As Customer</label>-->
+            <!--<tab>magefan</tab>-->
+            <!--<resource>Magefan_LoginAsCustomer::config_section</resource>-->
+            <!--<group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                <!--<label>Login As Customer Information</label>-->
+                <!--<field id="version" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<frontend_model>Magefan\LoginAsCustomer\Block\Adminhtml\System\Config\Form\Info</frontend_model>-->
+                <!--</field>-->
+                <!--<field id="disable_page_cache" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Disable Page Cache For Admin User</label>-->
+                    <!--<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>-->
+                <!--</field>-->
+            <!--</group>-->
+        <!--</section>-->
     </system>
 </config>
