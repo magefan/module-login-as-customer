@@ -46,10 +46,10 @@ class PredispathAdminActionControllerObserver implements ObserverInterface
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        if ($this->_backendAuthSession->isLoggedIn()) {
-            $feedModel = $this->_feedFactory->create();
-            /* @var $feedModel \Magefan\LoginAsCustomer\Model\AdminNotificationFeed */
-            $feedModel->checkUpdate();
-        }
+//        if ($this->_backendAuthSession->isLoggedIn()) {
+//            $feedModel = $this->_feedFactory->create();
+//            /* @var $feedModel \Magefan\LoginAsCustomer\Model\AdminNotificationFeed */
+//            $feedModel->checkUpdate();
+//        }
     }
 }
