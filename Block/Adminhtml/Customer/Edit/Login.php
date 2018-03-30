@@ -63,5 +63,4 @@ class Login extends GenericButton implements ButtonProviderInterface
     {
         return $this->getUrl('loginascustomer/login/login', ['customer_id' => $this->getCustomerId()]);
     }
-
 }
