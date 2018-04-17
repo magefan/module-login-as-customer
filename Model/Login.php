@@ -87,12 +87,14 @@ class Login extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\Framework\Math\Random $random,
         \Magento\Checkout\Model\Cart $cart,
+        \Magento\Checkout\Model\Session $checkoutSession,
         \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
         \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = []
     ) {
         $this->_customerFactory = $customerFactory;
         $this->_customerSession = $customerSession;
+        $this->_checkoutSession = $checkoutSession;
         $this->_dateTime = $dateTime;
         $this->_random = $random;
         $this->cart = $cart;
@@ -192,14 +194,8 @@ class Login extends \Magento\Framework\Model\AbstractModel
             );
         }
 
-        /* Save quote */
-        $this->cart->getQuote()->getBillingAddress();
-        $this->cart->getQuote()->getShippingAddress();
-        $this->cart->getQuote()->setCustomer($this->_customerSession->getCustomerDataObject())
-            ->setCustomerGroupId($customer->getGroupId())
-            ->setTotalsCollectedFlag(false)
-            ->collectTotals();
-        $this->cart->getQuote()->save();
+        /* Load Customer Quote */
+        $this->_checkoutSession->loadCustomerQuote();
 
         $this->setUsed(1)->save();
 
