@@ -44,11 +44,15 @@ class Login extends \Magento\Framework\Model\AbstractModel
      */
     protected $_customer;
 
-
     /**
      * @var \Magento\Customer\Model\Session
      */
     protected $_customerSession;
+
+    /**
+     * @var \Magento\Checkout\Model\Session
+     */
+    protected $_checkoutSession;
 
     /**
      * @var \Magento\Framework\Stdlib\DateTime\DateTime
@@ -75,8 +79,9 @@ class Login extends \Magento\Framework\Model\AbstractModel
      * @param \Magento\Framework\Stdlib\DateTime\DateTime $dateTime
      * @param \Magento\Framework\Math\Random $random
      * @param \Magento\Checkout\Model\Cart $cart
-     * @param \Magento\Framework\Model\ResourceModel\AbstractResource $resource
-     * @param \Magento\Framework\Data\Collection\AbstractDb $resourceCollection
+     * @param \Magento\Checkout\Model\Session $checkoutSession
+     * @param \Magento\Framework\Model\ResourceModel\AbstractResource|null $resource
+     * @param \Magento\Framework\Data\Collection\AbstractDb|null $resourceCollection
      * @param array $data
      */
     public function __construct(
