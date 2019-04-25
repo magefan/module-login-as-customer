@@ -17,11 +17,11 @@ class Login extends \Magento\Backend\App\Action
     /**
      * @var \Magefan\LoginAsCustomer\Model\Login
      */
-    protected $login;
+    protected $loginModel;
     /**
      * @var \Magento\Backend\Model\Auth\Session
      */
-    protected $session  = null;
+    protected $authSession  = null;
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
@@ -30,24 +30,27 @@ class Login extends \Magento\Backend\App\Action
      * @var \Magento\Framework\Url
      */
     protected $url = null;
+
     /**
      * Login constructor.
      * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magefan\LoginAsCustomer\Model\Login $login
+     * @param \Magefan\LoginAsCustomer\Model\Login|null $loginModel
+     * @param \Magento\Backend\Model\Auth\Session|null $authSession
+     * @param \Magento\Store\Model\StoreManagerInterface|null $storeManager
+     * @param \Magento\Framework\Url|null $url
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magefan\LoginAsCustomer\Model\Login $login = null,
-        \Magento\Backend\Model\Auth\Session $session = null,
+        \Magefan\LoginAsCustomer\Model\Login $loginModel = null,
+        \Magento\Backend\Model\Auth\Session $authSession = null,
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
         \Magento\Framework\Url $url = null
     ) {
         parent::__construct($context);
-        $objectManager = $this->_objectManager;
-        $this->login = $login ?: $objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
-        $this->session = $session ?: $objectManager->get(\Magento\Backend\Model\Auth\Session::class);
-        $this->storeManager = $storeManager ?: $objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
-        $this->url = $url ?: $objectManager->get(\Magento\Framework\Url::class);
+        $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
+        $this->authSession = $authSession ?: $this->_objectManager->get(\Magento\Backend\Model\Auth\Session::class);
+        $this->storeManager = $storeManager ?: $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
+        $this->url = $url ?: $this->_objectManager->get(\Magento\Framework\Url::class);
     }
     /**
      * Login as customer action
@@ -58,7 +61,7 @@ class Login extends \Magento\Backend\App\Action
     {
         $customerId = (int) $this->getRequest()->getParam('customer_id');
 
-        $login = $this->login->setCustomerId($customerId);
+        $login = $this->loginModel->setCustomerId($customerId);
 
         $login->deleteNotUsed();
 
@@ -70,7 +73,7 @@ class Login extends \Magento\Backend\App\Action
             return;
         }
 
-        $user = $this->session->getUser();
+        $user = $this->authSession->getUser();
         $login->generate($user->getId());
         $customerStoreId = $this->getCustomerStoreId($customer);
 

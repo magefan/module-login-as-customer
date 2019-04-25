@@ -22,6 +22,6 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     protected function _construct()
     {
         parent::_construct();
-        $this->_init('Magefan\LoginAsCustomer\Model\Login', 'Magefan\LoginAsCustomer\Model\ResourceModel\Login');
+        $this->_init(\Magefan\LoginAsCustomer\Model\Login::class, \Magefan\LoginAsCustomer\Model\ResourceModel\Login::class);
     }
 }

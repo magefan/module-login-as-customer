@@ -131,7 +131,7 @@ class Login extends \Magento\Framework\Model\AbstractModel
      */
     protected function _construct()
     {
-        $this->_init('Magefan\LoginAsCustomer\Model\ResourceModel\Login');
+        $this->_init(\Magefan\LoginAsCustomer\Model\ResourceModel\Login::class);
     }
 
     /**

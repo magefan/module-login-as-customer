@@ -16,7 +16,7 @@ class Index extends \Magento\Backend\App\Action
     /**
      * @var \Magefan\LoginAsCustomer\Model\Login
      */
-    protected $login = null;
+    protected $loginModel = null;
 
     /**
      * Index constructor.
@@ -25,11 +25,10 @@ class Index extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magefan\LoginAsCustomer\Model\Login $login = null
+        \Magefan\LoginAsCustomer\Model\Login $loginModel = null
     ) {
         parent::__construct($context);
-        $objectManager = $this->_objectManager;
-        $this->login = $login ?: $objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
+        $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
     }
     /**
      * Login as customer log
@@ -43,7 +42,7 @@ class Index extends \Magento\Backend\App\Action
             return;
         }
 
-        $this->login->deleteNotUsed();
+        $this->loginModel->deleteNotUsed();
 
         $this->_view->loadLayout();
         $this->_setActiveMenu('Magefan_LoginAsCustomer::login_log');
