@@ -30,6 +30,14 @@ class Login extends \Magento\Backend\App\Action
      * @var \Magento\Framework\Url
      */
     protected $url = null;
+    /**
+     * @var \Magefan\LoginAsCustomer\Model\Config
+     */
+    protected $config = null;
+    /**
+     * @var \Magento\Framework\App\ProductMetadataInterface
+     */
+    protected $metadata;
 
     /**
      * Login constructor.
@@ -38,19 +46,25 @@ class Login extends \Magento\Backend\App\Action
      * @param \Magento\Backend\Model\Auth\Session|null $authSession
      * @param \Magento\Store\Model\StoreManagerInterface|null $storeManager
      * @param \Magento\Framework\Url|null $url
+     * @param \Magefan\LoginAsCustomer\Model\Config|null $config
+     * @param \Magento\Framework\App\ProductMetadataInterface|null $metadata
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magefan\LoginAsCustomer\Model\Login $loginModel = null,
         \Magento\Backend\Model\Auth\Session $authSession = null,
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
-        \Magento\Framework\Url $url = null
+        \Magento\Framework\Url $url = null,
+        \Magefan\LoginAsCustomer\Model\Config $config = null,
+        \Magento\Framework\App\ProductMetadataInterface $metadata = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
         $this->authSession = $authSession ?: $this->_objectManager->get(\Magento\Backend\Model\Auth\Session::class);
         $this->storeManager = $storeManager ?: $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
         $this->url = $url ?: $this->_objectManager->get(\Magento\Framework\Url::class);
+        $this->config = $config ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Config::class);
+        $this->metadata = $metadata ?: $this->_objectManager->get(\Magento\Framework\App\ProductMetadataInterface::class);
     }
     /**
      * Login as customer action
@@ -59,6 +73,17 @@ class Login extends \Magento\Backend\App\Action
      */
     public function execute()
     {
+        if (!$this->config->isEnabled($this->storeManager->getStore()->getId())) {
+
+            $this->messageManager->addErrorMessage(__('Magefan Login As Customer is disabled.'));
+            $this->_redirect('customer/index/index');
+            return;
+        } elseif (!$this->config->isKeyMissing() && $this->metadata->getEdition() != 'Community') {
+
+            $this->messageManager->addErrorMessage(__('Magefan Login As Customer Product Key is missing.'));
+            $this->_redirect('customer/index/index');
+            return;
+        }
         $customerId = (int) $this->getRequest()->getParam('customer_id');
 
         $login = $this->loginModel->setCustomerId($customerId);
