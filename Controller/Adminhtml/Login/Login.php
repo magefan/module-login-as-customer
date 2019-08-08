@@ -30,6 +30,10 @@ class Login extends \Magento\Backend\App\Action
      * @var \Magento\Framework\Url
      */
     protected $url = null;
+    /**
+     * @var \Magefan\LoginAsCustomer\Model\Config
+     */
+    protected $config = null;
 
     /**
      * Login constructor.
@@ -38,19 +42,22 @@ class Login extends \Magento\Backend\App\Action
      * @param \Magento\Backend\Model\Auth\Session|null $authSession
      * @param \Magento\Store\Model\StoreManagerInterface|null $storeManager
      * @param \Magento\Framework\Url|null $url
+     * @param \Magefan\LoginAsCustomer\Model\Config|null $config
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magefan\LoginAsCustomer\Model\Login $loginModel = null,
         \Magento\Backend\Model\Auth\Session $authSession = null,
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
-        \Magento\Framework\Url $url = null
+        \Magento\Framework\Url $url = null,
+        \Magefan\LoginAsCustomer\Model\Config $config = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
         $this->authSession = $authSession ?: $this->_objectManager->get(\Magento\Backend\Model\Auth\Session::class);
         $this->storeManager = $storeManager ?: $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
         $this->url = $url ?: $this->_objectManager->get(\Magento\Framework\Url::class);
+        $this->config = $config ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Config::class);
     }
     /**
      * Login as customer action
@@ -59,7 +66,31 @@ class Login extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $customerId = (int) $this->getRequest()->getParam('customer_id');
+        $request = $this->getRequest();
+        $customerId = (int) $request->getParam('customer_id');
+        if (!$customerId) {
+            $customerId = (int) $request->getParam('entity_id');
+        }
+
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        $resultRedirect = $this->resultRedirectFactory->create();
+
+        if (!$this->config->isEnabled()) {
+            $msg = strrev(__('.remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ot etagivan esaelp noisnetxe eht elbane ot ,delbasid si remotsuC sA nigoL nafegaM'));
+            $this->messageManager->addErrorMessage($msg);
+            return $resultRedirect->setPath('customer/index/index');
+        } elseif ($this->config->isKeyMissing()) {
+            $msg = strrev(__(' .remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ni yek tcudorp eht yficeps esaelP .noos delbasid yllacitamotua eb lliw noisnetxE remotsuC sA nigoL .gnissim si yeK tcudorP remotsuC sA nigoL nafegaM'));
+            $this->messageManager->addErrorMessage($msg);
+            return $resultRedirect->setPath('customer/index/index');
+        }
+
+        $customerStoreId = $request->getParam('store_id');
+
+        if (!isset($customerStoreId) && $this->config->getStoreViewLogin()) {
+            $this->messageManager->addNoticeMessage(__('Please select a Store View to login in.'));
+            return $resultRedirect->setPath('loginascustomer/login/manual', ['entity_id' => $customerId ]);
+        }
 
         $login = $this->loginModel->setCustomerId($customerId);
 
@@ -68,21 +99,23 @@ class Login extends \Magento\Backend\App\Action
         $customer = $login->getCustomer();
 
         if (!$customer->getId()) {
-            $this->messageManager->addError(__('Customer with this ID are no longer exist.'));
-            $this->_redirect('customer/index/index');
-            return;
+            $this->messageManager->addErrorMessage(__('Customer with this ID are no longer exist.'));
+            return $resultRedirect->setPath('customer/index/index');
         }
 
         $user = $this->authSession->getUser();
         $login->generate($user->getId());
-        $customerStoreId = $this->getCustomerStoreId($customer);
+
+        if (!$customerStoreId) {
+            $customerStoreId = $this->getCustomerStoreId($customer);
+        }
 
         if ($customerStoreId) {
             $store = $this->storeManager->getStore($customerStoreId);
         } else {
             $store = $this->storeManager->getDefaultStoreView();
         }
-        
+
         $redirectUrl = $this->url->setScope($store)
             ->getUrl('loginascustomer/login/index', ['secret' => $login->getSecret(), '_nosid' => true]);
 
