@@ -2,7 +2,7 @@
     "name": "magefan/module-login-as-customer",
     "description": "Allow for admin to enter a customer account",
     "require": {
-        "magefan/module-community" : ">=2.0.6"
+        "magefan/module-community" : ">=2.0.8"
     },
     "type": "magento2-module",
     "version": "2.2.0.1",
