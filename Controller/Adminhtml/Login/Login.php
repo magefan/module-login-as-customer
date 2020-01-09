@@ -18,22 +18,31 @@ class Login extends \Magento\Backend\App\Action
      * @var \Magefan\LoginAsCustomer\Model\Login
      */
     protected $loginModel;
+
     /**
      * @var \Magento\Backend\Model\Auth\Session
      */
     protected $authSession  = null;
+
     /**
      * @var \Magento\Store\Model\StoreManagerInterface
      */
     protected $storeManager  = null;
+
     /**
      * @var \Magento\Framework\Url
      */
     protected $url = null;
+
     /**
      * @var \Magefan\LoginAsCustomer\Model\Config
      */
     protected $config = null;
+
+    /**
+     * @var \Magento\Customer\Api\CustomerRepositoryInterface
+     */
+    protected $customerRepository = null;
 
     /**
      * Login constructor.
@@ -43,6 +52,7 @@ class Login extends \Magento\Backend\App\Action
      * @param \Magento\Store\Model\StoreManagerInterface|null $storeManager
      * @param \Magento\Framework\Url|null $url
      * @param \Magefan\LoginAsCustomer\Model\Config|null $config
+     * @param \Magento\Customer\Api\CustomerRepositoryInterface|null $customerRepository
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
@@ -50,7 +60,8 @@ class Login extends \Magento\Backend\App\Action
         \Magento\Backend\Model\Auth\Session $authSession = null,
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
         \Magento\Framework\Url $url = null,
-        \Magefan\LoginAsCustomer\Model\Config $config = null
+        \Magefan\LoginAsCustomer\Model\Config $config = null,
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
@@ -58,6 +69,7 @@ class Login extends \Magento\Backend\App\Action
         $this->storeManager = $storeManager ?: $this->_objectManager->get(\Magento\Store\Model\StoreManagerInterface::class);
         $this->url = $url ?: $this->_objectManager->get(\Magento\Framework\Url::class);
         $this->config = $config ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Config::class);
+        $this->customerRepository = $customerRepository ?: $this->_objectManager->get(\Magento\Customer\Api\CustomerRepositoryInterface::class);
     }
     /**
      * Login as customer action
@@ -103,6 +115,29 @@ class Login extends \Magento\Backend\App\Action
             return $resultRedirect->setPath('customer/index/index');
         }
 
+        /* Check if customer's company is active */
+        $tmpCustomer = $this->customerRepository->getById($customer->getId());
+        if ($tmpCustomer->getExtensionAttributes() !== null) {
+            $companyAttributes = null;
+            if (method_exists($tmpCustomer->getExtensionAttributes(), 'getCompanyAttributes')) {
+                $companyAttributes = $tmpCustomer->getExtensionAttributes()->getCompanyAttributes();
+            }
+
+            if ($companyAttributes !== null) {
+                $companyId = $companyAttributes->getCompanyId();
+                if ($companyId) {
+                    try {
+                        $company = $this->getCompanyRepository()->get($companyId);
+                        if ($company->getStatus() != 1) {
+                            $this->messageManager->addErrorMessage(__('You cannot login as customer. Customer\'s company is not active.'));
+                            return $resultRedirect->setPath('customer/index/index');
+                        }
+                    } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {}
+                }
+            }
+        }
+        /* End check */
+
         $user = $this->authSession->getUser();
         $login->generate($user->getId());
 
@@ -140,5 +175,14 @@ class Login extends \Magento\Backend\App\Action
     protected function _isAllowed()
     {
         return $this->_authorization->isAllowed('Magefan_LoginAsCustomer::login_button');
+    }
+
+    /**
+     * Retrieve Company Repository
+     * @return \Magento\Company\Api\CompanyRepositoryInterface
+     */
+    protected function getCompanyRepository()
+    {
+        return $this->_objectManager->get(\Magento\Company\Api\CompanyRepositoryInterface::class);
     }
 }
