@@ -76,9 +76,17 @@ class Config
      */
     public function isKeyMissing()
     {
+        $path = explode('/', self::XML_PATH_KEY);
+        $path = $path[0];
+
+        $section = \Magento\Framework\App\ObjectManager::getInstance()->create(
+            \Magefan\Community\Model\Section::class,
+            ['name' => $path]
+        );
+
         return !$this->getConfig(
             self::XML_PATH_KEY
-        ) && $this->metadata->getEdition() != 'C' . strrev('ytinummo');
+        ) && $section->getModule();
     }
 
     /**
