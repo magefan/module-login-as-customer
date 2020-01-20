@@ -12,29 +12,34 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">manual_store_form.manual_store_form_data_source</item>
+            <item name="deps" xsi:type="string">manual_store_form.manual_store_form_data_source</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="save" xsi:type="string">Magefan\LoginAsCustomer\Block\Adminhtml\Store\SaveButton</item>
+        </item>
     </argument>
-    <settings>
-        <buttons>
-            <button name="save" class="Magefan\LoginAsCustomer\Block\Adminhtml\Store\SaveButton"/>
-        </buttons>
-        <dataScope>data</dataScope>
-        <deps>
-            <dep>manual_store_form.manual_store_form_data_source</dep>
-        </deps>
-    </settings>
-    <dataSource name="manual_store_form_data_source" component="Magento_Ui/js/form/provider">
-        <settings>
-            <submitUrl path="loginascustomer/login/login"/>
-        </settings>
-        <dataProvider class="Magefan\LoginAsCustomer\Ui\DataProvider\Store\Form\StoreDataProvider"
-                      name="manual_store_form_data_source">
-            <settings>
-                <requestFieldName>entity_id</requestFieldName>
-                <primaryFieldName>entity_id</primaryFieldName>
-            </settings>
-        </dataProvider>
+
+    <dataSource name="manual_store_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magefan\LoginAsCustomer\Ui\DataProvider\Store\Form\StoreDataProvider</argument>
+            <argument name="name" xsi:type="string">manual_store_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="loginascustomer/login/login" />
+                </item>
+            </argument>
+        </argument>
     </dataSource>
 
     <fieldset name="websites" class="Magento\Store\Ui\Component\Form\Fieldset\Websites">
@@ -72,5 +77,5 @@
                 </item>
             </argument>
         </field>
-     </fieldset>
+    </fieldset>
 </form>
