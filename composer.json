@@ -2,10 +2,10 @@
     "name": "magefan/module-login-as-customer",
     "description": "Allow for admin to enter a customer account",
     "require": {
-        "magefan/module-community" : ">=2.0.10"
+        "magefan/module-community" : ">=2.0.11"
     },
     "type": "magento2-module",
-    "version": "2.2.1.1",
+    "version": "2.2.2",
     "autoload": {
         "files": [ "registration.php" ],
         "psr-4": {
