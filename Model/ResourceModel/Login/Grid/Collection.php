@@ -23,6 +23,7 @@ class Collection extends \Magefan\LoginAsCustomer\Model\ResourceModel\Login\Coll
     {
         parent::_construct();
         $this->_map['fields']['email'] = 'c.email';
+        $this->_map['fields']['created_at'] = 'main_table.created_at';
     }
 
     /**
