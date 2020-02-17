@@ -75,7 +75,7 @@ class ToolbarPlugin
                         ['label' => __('Login As Customer'), 'onclick' => 'window.open(\'' . $buttonUrl . '\')', 'class' => 'reset'],
                         -1
                     );
-                } elseif (false === strpos($this->urlInterface->getCurrentUrl(), strrev('etisotnegam'))) {
+                } elseif (\Magefan\Community\Model\UrlChecker::showUrl($block->getUrl())) {
                     $buttonUrl = $context->getUrl('loginascustomer/guest/convert');
                     $buttonList->add(
                         'guest_to_customer',

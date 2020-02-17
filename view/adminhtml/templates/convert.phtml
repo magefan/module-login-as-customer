@@ -8,13 +8,12 @@
 ?>
 
 <?php
-if (false !== strpos($block->getUrl(), 'magentosite')) {
-    $url = 'https://marketplace.magento.com/magefan-module-convert-guest-to-customer.html';
+if (\Magefan\Community\Model\UrlChecker::showUrl($block->getUrl())) {
+	$url = 'https://magefan.com/magento2-convert-guest-to-customer?utm_source=m2admin_login_as_customer&utm_medium=link&utm_campaign=regular';
 } else {
-    $url = 'https://magefan.com/magento2-convert-guest-to-customer?utm_source=m2admin_login_as_customer&utm_medium=link&utm_campaign=regular';
+    $url = 'https://marketplace.magento.com/magefan-module-convert-guest-to-customer.html';
 }
 ?>
-
 
 <div class="block" style="padding-top:50px; padding-bottom: 300px;">
     <h2><?php echo __('To enable "Convert Guest to Customer" functionality you need to install <a href="'.$url.'" target="_blank">Customer to Guest Magento 2 Extension</a>.'); ?></h2>
