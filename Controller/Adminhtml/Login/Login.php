@@ -88,11 +88,11 @@ class Login extends \Magento\Backend\App\Action
         $resultRedirect = $this->resultRedirectFactory->create();
 
         if (!$this->config->isEnabled()) {
-            $msg = strrev(__('.remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ot etagivan esaelp noisnetxe eht elbane ot ,delbasid si remotsuC sA nigoL nafegaM'));
+            $msg = __(strrev('.remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ot etagivan esaelp noisnetxe eht elbane ot ,delbasid si remotsuC sA nigoL nafegaM'));
             $this->messageManager->addErrorMessage($msg);
             return $resultRedirect->setPath('customer/index/index');
         } elseif ($this->config->isKeyMissing()) {
-            $msg = strrev(__(' .remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ni yek tcudorp eht yficeps esaelP .noos delbasid yllacitamotua eb lliw noisnetxE remotsuC sA nigoL .gnissim si yeK tcudorP remotsuC sA nigoL nafegaM'));
+            $msg = __(strrev('.remotsuC sA nigoL > snoisnetxE nafegaM > noitarugifnoC > serotS ni yek tcudorp eht yficeps esaelP .noos delbasid yllacitamotua eb lliw noisnetxE remotsuC sA nigoL .gnissim si yeK tcudorP remotsuC sA nigoL nafegaM'));
             $this->messageManager->addErrorMessage($msg);
             return $resultRedirect->setPath('customer/index/index');
         }
