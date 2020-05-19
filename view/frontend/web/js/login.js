@@ -13,7 +13,7 @@ define([
 
     return function (config) {
         $('body').trigger('processStart');
-        customerData.reload(sectionConfig.getSectionNames()).done(function () {
+        customerData.reload(sectionConfig.getSectionNames ? sectionConfig.getSectionNames() : 'customer').done(function () {
             window.location.href = config.redirectUrl;
         });
     };
