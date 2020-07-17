@@ -76,6 +76,8 @@ class Config
      */
     public function isKeyMissing()
     {
+        return false;
+        /*
         $path = explode('/', self::XML_PATH_KEY);
         $path = $path[0];
 
@@ -87,6 +89,7 @@ class Config
         return !$this->getConfig(
             self::XML_PATH_KEY
         ) && $section->getModule();
+        */
     }
 
     /**

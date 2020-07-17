@@ -26,10 +26,6 @@
                     <label>Enable Extension</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="key" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="0" showInStore="0">
-                    <label>Product Key</label>
-                    <frontend_model>Magefan\Community\Block\Adminhtml\System\Config\Form\ProductKeyField</frontend_model>
-                </field>
                 <field id="disable_page_cache" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Disable Page Cache For Admin User</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>

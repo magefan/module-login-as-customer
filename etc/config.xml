@@ -12,8 +12,6 @@
         <mfloginascustomer>
             <general>
                 <enabled>0</enabled>
-                <mfmodule>LoginAsCustomer</mfmodule>
-                <mftype>1</mftype>
             </general>
         </mfloginascustomer>
     </default>
