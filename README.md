@@ -12,7 +12,7 @@ Allows admin to login as a customer (enter to customer account).
 
 
 ## Requirements
-  * Magento Community Edition 2.0.x-2.4.0 or Magento Enterprise Edition 2.0.x-2.4.0
+  * Magento Community Edition 2.0.x-2.4.x or Magento Enterprise Edition 2.0.x-2.4.x
 ## Installation
 * [Install Magento 2 Login As Customer via Composer or an archive](https://magefan.com/blog/magento2-login-as-customer-extension-installation)
 
