@@ -5,6 +5,9 @@ Allows admin to login as a customer (enter to customer account).
 [![Total Downloads](https://poser.pugx.org/magefan/module-login-as-customer/downloads)](https://packagist.org/packages/magefan/module-login-as-customer)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-login-as-customer/v/stable)](https://packagist.org/packages/magefan/module-login-as-customer)
 
+<img width="150" height="100" src="https://magefan.com/media/wysiwyg/made_in_ukraine.jpg">
+
+
 ## Important
 
 **This module has been officially moved to the Magento2 GitHub repo as part of Magento 2.4.0 or greater.**
