@@ -5,6 +5,8 @@ Allows admin to login as a customer (enter to customer account).
 [![Total Downloads](https://poser.pugx.org/magefan/module-login-as-customer/downloads)](https://packagist.org/packages/magefan/module-login-as-customer)
 [![Latest Stable Version](https://poser.pugx.org/magefan/module-login-as-customer/v/stable)](https://packagist.org/packages/magefan/module-login-as-customer)
 
+<a href="https://www.comebackalive.in.ua/donate"><img width="830" height="208" src="https://cm.magefan.com/blog/support-ukraine.png"></a>
+
 <img width="150" height="100" src="https://magefan.com/media/wysiwyg/made_in_ukraine.jpg">
 
 
