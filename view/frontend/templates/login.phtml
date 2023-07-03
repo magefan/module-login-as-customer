@@ -12,7 +12,7 @@
 {
     "*": {
         "Magefan_LoginAsCustomer/js/login": {
-            "redirectUrl": "<?= $block->getUrl('customer/account/index') ?>"
+            "redirectUrl": "<?= $block->escapeUrl($block->getUrl('customer/account/index')) ?>"
         }
     }
 }
