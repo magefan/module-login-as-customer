@@ -12,7 +12,7 @@
         <tab id="magefan" translate="label" sortOrder="110">
             <label>MageFan Extensions</label>
         </tab>
-        <section id="mfloginascustomer" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+        <section id="mfloginascustomer" translate="label" type="text" sortOrder="10922470850" showInDefault="1" showInWebsite="1" showInStore="1">
             <class>separator-top</class>
             <label>Login As Customer</label>
             <tab>magefan</tab>
@@ -26,17 +26,17 @@
                     <label>Enable Extension</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="disable_page_cache" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="disable_page_cache" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Disable Page Cache For Admin User</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If set to "Yes", when login as customer Page Cache will be disabled.]]></comment>
                 </field>
-                <field id="keep_guest_cart" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="keep_guest_cart" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Keep Guest Shopping Cart Items</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                     <comment><![CDATA[If set to "Yes", after login, guest shopping cart will be merged into customer shopping cart.]]></comment>
                 </field>
-                <field id="store_view_login" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="store_view_login" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Store View To Login In</label>
                     <source_model>Magefan\LoginAsCustomer\Model\Config\Source\StoreViewLogin</source_model>
                     <comment><![CDATA[
