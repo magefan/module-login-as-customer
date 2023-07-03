@@ -12,8 +12,8 @@
         <mfloginascustomer>
             <general>
                 <enabled>0</enabled>
-                <disable_page_cache>1</disable_page_cache>
-                <keep_guest_cart>1</keep_guest_cart>
+                <disable_page_cache>0</disable_page_cache>
+                <keep_guest_cart>0</keep_guest_cart>
                 <store_view_login>0</store_view_login>
             </general>
         </mfloginascustomer>
