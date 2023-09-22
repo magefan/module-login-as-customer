@@ -45,6 +45,11 @@ class Login extends \Magento\Backend\App\Action
     protected $customerRepository = null;
 
     /**
+     * @var \Magento\Store\Model\App\Emulation
+     */
+    protected $emulation = null;
+
+    /**
      * Login constructor.
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magefan\LoginAsCustomer\Model\Login|null $loginModel
@@ -61,7 +66,8 @@ class Login extends \Magento\Backend\App\Action
         \Magento\Store\Model\StoreManagerInterface $storeManager = null,
         \Magento\Framework\Url $url = null,
         \Magefan\LoginAsCustomer\Model\Config $config = null,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository = null
+        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository = null,
+        \Magento\Store\Model\App\Emulation $emulation = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);
@@ -70,6 +76,7 @@ class Login extends \Magento\Backend\App\Action
         $this->url = $url ?: $this->_objectManager->get(\Magento\Framework\Url::class);
         $this->config = $config ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Config::class);
         $this->customerRepository = $customerRepository ?: $this->_objectManager->get(\Magento\Customer\Api\CustomerRepositoryInterface::class);
+        $this->emulation = $emulation ?: $this->_objectManager->get(\Magento\Store\Model\App\Emulation::class);
     }
     /**
      * Login as customer action
@@ -151,8 +158,10 @@ class Login extends \Magento\Backend\App\Action
             $store = $this->storeManager->getDefaultStoreView();
         }
 
+        $this->emulation->startEnvironmentEmulation($store->getId(), \Magento\Framework\App\Area::AREA_FRONTEND, true);
         $redirectUrl = $this->url->setScope($store)
             ->getUrl('loginascustomer/login/index', ['secret' => $login->getSecret(), '_nosid' => true]);
+        $this->emulation->stopEnvironmentEmulation();
 
         $this->getResponse()->setRedirect($redirectUrl);
     }
