@@ -14,6 +14,11 @@ namespace Magefan\LoginAsCustomer\Model\ResourceModel\Login;
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
     /**
+     * @inheritDoc
+     */
+    protected $_idFieldName = 'login_id';
+    
+    /**
      * Constructor
      * Configures collection
      *
