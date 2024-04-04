@@ -11,4 +11,7 @@
     <type name="Magento\PageCache\Model\Config">
         <plugin name="las-cache-is-enabled" type="Magefan\LoginAsCustomer\Model\PageCache\ConfigPlugin"/>
     </type>
+    <type name="Magento\Catalog\Model\Product\Compare\Item">
+        <plugin name="las-model-product-compare-item" type="Magefan\LoginAsCustomer\Plugin\Magento\Catalog\Model\Product\Compare\Item" sortOrder="10" disabled="false"/>
+    </type>
 </config>
