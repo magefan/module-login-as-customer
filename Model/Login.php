@@ -220,12 +220,15 @@ class Login extends \Magento\Framework\Model\AbstractModel
             throw new \Exception(__("Customer are no longer exist."), 1);
         }
 
+        $this->_customerSession->setLoggedAsCustomerPreLogin(true);
         if ($this->_customerSession->loginById($customer->getId())) {
             $this->_customerSession->regenerateId();
             $this->_customerSession->setLoggedAsCustomerAdmindId(
                 $this->getAdminId()
             );
+            $this->_customerSession->setLoggedAsCustomerPreLogin(false);
         } else {
+            $this->_customerSession->setLoggedAsCustomerPreLogin(false);
             throw new \Exception(__("Cannot login customer."), 1);
         }
 
