@@ -228,7 +228,7 @@ class Login extends \Magento\Framework\Model\AbstractModel
             );
             $this->_customerSession->setLoggedAsCustomerPreLogin(false);
         } else {
-            $this->_customerSession->setLoggedAsCustomerPreLogin(true);
+            $this->_customerSession->setLoggedAsCustomerPreLogin(false);
             throw new \Exception(__("Cannot login customer."), 1);
         }
 
