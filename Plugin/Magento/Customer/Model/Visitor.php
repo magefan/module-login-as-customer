@@ -41,8 +41,7 @@ class Visitor
     public function __construct(
         RequestInterface $request,
         SessionManagerInterface $session,
-        ManagerInterface $_eventManager,
-
+        ManagerInterface $_eventManager
     ) {
         $this->request = $request;
         $this->session = $session;
