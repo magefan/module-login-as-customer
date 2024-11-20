@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="magefan_login_as_customer" resource="default" engine="innodb" comment="Magefan Login As Customer Table">
+    <column xsi:type="int" name="login_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Admin Login ID"/>
+    <column xsi:type="int" name="customer_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Customer ID"/>
+    <column xsi:type="int" name="admin_id" padding="11" unsigned="false" nullable="true" identity="false" comment="Admin ID"/>
+    <column xsi:type="varchar" name="secret" nullable="true" length="64" comment="Login Secret"/>
+    <column xsi:type="smallint" name="used" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Is Login Used"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true" comment="Creation Time"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="login_id"/>
+    </constraint>
+    <index referenceId="MAGEFAN_LOGIN_AS_CUSTOMER_CUSTOMER_ID" indexType="btree">
+      <column name="customer_id"/>
+    </index>
+    <index referenceId="MAGEFAN_LOGIN_AS_CUSTOMER_ADMIN_ID" indexType="btree">
+      <column name="admin_id"/>
+    </index>
+  </table>
+</schema>
