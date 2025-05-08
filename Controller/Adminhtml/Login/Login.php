@@ -61,13 +61,13 @@ class Login extends \Magento\Backend\App\Action
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magefan\LoginAsCustomer\Model\Login $loginModel = null,
-        \Magento\Backend\Model\Auth\Session $authSession = null,
-        \Magento\Store\Model\StoreManagerInterface $storeManager = null,
-        \Magento\Framework\Url $url = null,
-        \Magefan\LoginAsCustomer\Model\Config $config = null,
-        \Magento\Customer\Api\CustomerRepositoryInterface $customerRepository = null,
-        \Magento\Store\Model\App\Emulation $emulation = null
+        ?\Magefan\LoginAsCustomer\Model\Login $loginModel = null,
+        ?\Magento\Backend\Model\Auth\Session $authSession = null,
+        ?\Magento\Store\Model\StoreManagerInterface $storeManager = null,
+        ?\Magento\Framework\Url $url = null,
+        ?\Magefan\LoginAsCustomer\Model\Config $config = null,
+        ?\Magento\Customer\Api\CustomerRepositoryInterface $customerRepository = null,
+        ?\Magento\Store\Model\App\Emulation $emulation = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);

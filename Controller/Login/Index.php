@@ -24,7 +24,7 @@ class Index extends \Magento\Framework\App\Action\Action
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
-        \Magefan\LoginAsCustomer\Model\Login $loginModel = null
+        ?\Magefan\LoginAsCustomer\Model\Login $loginModel = null
     ) {
         parent::__construct($context);
         $this->loginModel = $loginModel ?: $this->_objectManager->get(\Magefan\LoginAsCustomer\Model\Login::class);

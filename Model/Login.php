@@ -100,8 +100,8 @@ class Login extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Stdlib\DateTime\DateTime $dateTime,
         \Magento\Framework\Math\Random $random,
         \Magento\Checkout\Model\Cart $cart,
-        \Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
-        \Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
+        ?\Magento\Framework\Model\ResourceModel\AbstractResource $resource = null,
+        ?\Magento\Framework\Data\Collection\AbstractDb $resourceCollection = null,
         array $data = [],
         $checkoutSession = null,
         $scopeConfig = null
