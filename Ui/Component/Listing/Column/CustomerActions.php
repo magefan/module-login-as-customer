@@ -8,9 +8,6 @@
 
 namespace Magefan\LoginAsCustomer\Ui\Component\Listing\Column;
 
-/**
- * Class CustomerActions
- */
 class CustomerActions extends AbstractColumn
 {
 

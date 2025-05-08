@@ -8,9 +8,6 @@
 
 namespace Magefan\LoginAsCustomer\Block\Adminhtml\Store;
 
-/**
- * Class SaveButton
- */
 class SaveButton extends \Magefan\Community\Block\Adminhtml\Edit\SaveButton
 {
     /**

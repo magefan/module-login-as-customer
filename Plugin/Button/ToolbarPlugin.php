@@ -13,10 +13,6 @@ use \Magento\Backend\Block\Widget\Button\Toolbar\Interceptor;
 use \Magento\Framework\View\Element\AbstractBlock;
 use \Magento\Backend\Block\Widget\Button\ButtonList;
 
-/**
- * Class ToolbarPlugin
- * @package Magefan\LoginAsCustomerAdvanced\Plugin\Button
- */
 class ToolbarPlugin
 {
     /**

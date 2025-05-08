@@ -8,10 +8,6 @@
 
 namespace Magefan\LoginAsCustomer\Controller\Adminhtml\Login;
 
-/**
- * Class Manual
- * @package Magefan\LoginAsCustomer\Controller\Adminhtml\Login
- */
 class Manual extends \Magento\Backend\App\Action
 {
     /**

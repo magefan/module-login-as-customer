@@ -59,7 +59,7 @@ class Visitor
         $result,
         $observer
     ) {
-        if ($this->request->getFullActionName() == 'loginascustomer_login_index')  {
+        if ($this->request->getFullActionName() == 'loginascustomer_login_index') {
             if (!$result->getId()) {
                 $result->setSessionId($this->session->getSessionId());
                 $result->save();
@@ -71,4 +71,3 @@ class Visitor
         return $result;
     }
 }
-

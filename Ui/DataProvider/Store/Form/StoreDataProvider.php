@@ -33,5 +33,4 @@ class StoreDataProvider extends AbstractDataProvider
         $this->collection = $collectionFactory->create();
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
     }
-
 }

@@ -8,10 +8,6 @@
 
 namespace Magefan\LoginAsCustomer\Model\Config\Source;
 
-/**
- * Class StoreViewLogin
- * @package Magefan\LoginAsCustomer\Model\Config\Source
- */
 class StoreViewLogin implements \Magento\Framework\Data\OptionSourceInterface
 {
     /**

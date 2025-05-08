@@ -8,10 +8,6 @@
 
 namespace Magefan\LoginAsCustomer\Controller\Adminhtml\Login;
 
-/**
- * Class Login
- * @package Magefan\LoginAsCustomer\Controller\Adminhtml\Login
- */
 class Login extends \Magento\Backend\App\Action
 {
     /**
@@ -139,7 +135,9 @@ class Login extends \Magento\Backend\App\Action
                             $this->messageManager->addErrorMessage(__('You cannot login as customer. Customer\'s company is not active.'));
                             return $resultRedirect->setPath('customer/index/index');
                         }
-                    } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {}
+                    } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+
+                    }
                 }
             }
         }

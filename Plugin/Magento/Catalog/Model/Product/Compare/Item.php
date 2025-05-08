@@ -9,9 +9,6 @@ declare(strict_types=1);
 
 namespace Magefan\LoginAsCustomer\Plugin\Magento\Catalog\Model\Product\Compare;
 
-/**
- * Class Item
- */
 class Item
 {
 
@@ -46,4 +43,3 @@ class Item
         return $proceed();
     }
 }
-
