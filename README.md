@@ -34,6 +34,54 @@ https://magefan.com/contact
 ## License
 The code is licensed under [EULA](https://magefan.com/end-user-license-agreement).
 
+## Demo
+
+Try out our open demo and if you like our extension **please give us some star on Github ★**
+<table>
+  <tbody>
+    <tr>
+      <td align="center" valign="middle">
+        Storefront Demo
+      </td>
+      <td align="center" valign="middle">
+        Admin Panel Demo
+      </td align="center" valign="middle">
+    </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://lac.demo.magefan.top/">
+          <img
+            src="https://magefan.com/static/version1520969775/frontend/Magefan/new/en_US/images/product-tab-demo-1.jpg"
+            alt="Magneto 2 Login As Customer Extension Storefront Demo"
+            height="220"
+          >
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://lac.demo.magefan.top/admin/admin/">
+          <img
+            src="https://cs.magefan.com/version1732118579/frontend/Magefan/next/en_US/Magefan_CssOptimizer/images/product-tab-demo-2.jpg"
+            alt="Magento 2 Login As Customer Extension Admin Panel Demo"
+            height="220"
+          >
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle">
+        <a href="https://lac.demo.magefan.top/">
+          view
+        </a>
+      </td>
+      <td align="center" valign="middle">
+        <a href="https://lac.demo.magefan.top/admin/admin/">
+          view
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## [Magento Extensions](https://magefan.com/magento-2-extensions) by Magefan
 
 ### Magento 2 SEO Extensions
@@ -133,51 +181,3 @@ The code is licensed under [EULA](https://magefan.com/end-user-license-agreement
 * [Magent SEO Service](https://magefan.com/magento-2-seo-service)
 * [Custom Magento Development](https://magefan.com/custom-development)
 * [Magento Installation Service](https://magefan.com/installation-service)
-
-## Demo
-
-Try out our open demo and if you like our extension **please give us some star on Github ★**
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="middle">
-        Storefront Demo
-      </td>
-      <td align="center" valign="middle">
-        Admin Panel Demo
-      </td align="center" valign="middle">
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://lac.demo.magefan.top/">
-          <img
-            src="https://magefan.com/static/version1520969775/frontend/Magefan/new/en_US/images/product-tab-demo-1.jpg"
-            alt="Magneto 2 Login As Customer Extension Storefront Demo"
-            height="220"
-          >
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://lac.demo.magefan.top/admin/admin/">
-          <img
-            src="https://cs.magefan.com/version1732118579/frontend/Magefan/next/en_US/Magefan_CssOptimizer/images/product-tab-demo-2.jpg"
-            alt="Magento 2 Login As Customer Extension Admin Panel Demo"
-            height="220"
-          >
-        </a>
-      </td>
-    </tr>
-    <tr>
-      <td align="center" valign="middle">
-        <a href="https://lac.demo.magefan.top/">
-          view
-        </a>
-      </td>
-      <td align="center" valign="middle">
-        <a href="https://lac.demo.magefan.top/admin/admin/">
-          view
-        </a>
-      </td>
-    </tr>
-  </tbody>
-</table>
