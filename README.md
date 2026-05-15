@@ -88,6 +88,7 @@ Try out our open demo and if you like our extension **please give us some star o
 
 * [Magento SEO](https://magefan.com/magento-2-seo-extension)
 * [Magento 2 Rich Snippets](https://magefan.com/magento-2-rich-snippets)
+* [Magento 2 LLMs TXT Generator](https://magefan.com/magento-2-llms-txt-generator)
 * [Magento 2 HTML Sitemap](https://magefan.com/magento-2-html-sitemap-extension)
 * [Magento 2 XML Sitemap](https://magefan.com/magento-2-xml-sitemap-extension)
 * [Magento 2 Twitter Cards](https://magefan.com/magento-2-twitter-cards-extension)
@@ -170,6 +171,7 @@ Try out our open demo and if you like our extension **please give us some star o
 
 * [Shopify Login As Customer](https://apps.shopify.com/login-as-customer)
 * [Shopify Blog](https://apps.shopify.com/magefan-blog)
+* [Shopify Persistent Cart](https://apps.shopify.com/magefan-persistent-cart)
 * [Shopify Size Chart](https://magefan.com/shopify/apps/size-chart)
 * [Shopify Google Indexer](https://magefan.com/shopify/apps/google-indexing)
 * [Shopify Product Feeds](https://magefan.com/shopify/apps/product-feed)
