@@ -16,12 +16,27 @@ use Magento\Framework\Event\ObserverInterface;
 class WbsiterestrictionFrontendObserver implements ObserverInterface
 {
     /**
+     * @var \Magento\Framework\App\RequestInterface
+     */
+    protected $request;
+
+    /**
+     * @param \Magento\Framework\App\RequestInterface|null $request
+     */
+    public function __construct(
+        ?\Magento\Framework\App\RequestInterface $request = null
+    ) {
+        $this->request = $request ?: \Magento\Framework\App\ObjectManager::getInstance()->get(
+            \Magento\Framework\App\RequestInterface::class
+        );
+    }
+
+    /**
      * Disable website stub or private sales restriction for loginascustomer
      */
     public function execute(\Magento\Framework\Event\Observer $observer)
     {
-        $controller = $observer->getController();
-        if ($controller->getRequest()->getModuleName() == 'loginascustomer') {
+        if ($this->request->getModuleName() == 'loginascustomer') {
             $result = $observer->getResult();
             $result->setData('should_proceed', false);
         }
